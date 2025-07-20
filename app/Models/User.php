@@ -2,31 +2,36 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Reserva;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Los atributos que se pueden asignar masivamente.
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellidos',
         'email',
         'password',
+        'telefono',
+        'imagenusuario',
+        'rol',
+        'insta_user',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Los atributos que deben ocultarse en arrays o JSON.
      *
-     * @var list<string>
+     * @var array<string>
      */
     protected $hidden = [
         'password',
@@ -34,15 +39,55 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Definición de casts.
      *
-     * @return array<string, string>
+     * Nota: Laravel 12 usa ahora un método en lugar de la propiedad $casts.
+     *
+     * @return array<string,string>
      */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
+    }
+
+    /**
+     * Relación: un usuario tiene muchas reservas.
+     */
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'idCliente');
+    }
+
+    /**
+     * Scope para filtrar por apellidos.
+     */
+    public function scopeApellidos($query, $apellidos)
+    {
+        if ($apellidos) {
+            return $query->where('apellidos', 'like', "%{$apellidos}%");
+        }
+    }
+
+    /**
+     * Scope para filtrar por email.
+     */
+    public function scopeEmail($query, $email)
+    {
+        if ($email) {
+            return $query->where('email', 'like', "%{$email}%");
+        }
+    }
+
+    /**
+     * Scope para filtrar por rol.
+     */
+    public function scopeRol($query, $rol)
+    {
+        if ($rol) {
+            return $query->where('rol', 'like', "%{$rol}%");
+        }
     }
 }
