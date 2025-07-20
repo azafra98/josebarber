@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+body {
+    background-color: #3d3d3d;
+    font-family: 'Barlow Condensed';
+    color: white;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Courgette';
+}
+
+.bg-primary {
+    background-color: #1c191c !important;
+}
+
+nav a {
+    color: white !important;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #c1272f !important;
+    text-decoration: none;
+}
+
+.dropdown-item {
+    color: #1b1e21 !important;
+}
+.dropdown-item:hover {
+    color: #c1272f !important;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: #2e358d;
+    border-radius: 1.875rem;
+    border-color: #1c191c;
+    box-shadow: 0 0.125rem 0.75rem rgba(46, 53, 141, 1);
+
+}
+.btn-citas{
+    width: 4.688rem;
+    height: 2.5rem;
+    font-size: 1.125rem;
+}
+
+.btn-primary:hover {
+    background-color: #c1272f;
+    border-color: #1c191c;
+    box-shadow: 0 0.125rem 0.75rem rgba(193, 39, 47, 1);
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 20.625rem;
+    padding: 0.938rem;
+    margin: auto;
+}
+.form-signin .checkbox {
+    font-weight: 400;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 0.625rem;
+    font-size: 1rem;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -0.063rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 0.625rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 48rem) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+footer {
+    background-color: white;
+    color: black;
+}
+
+footer a {
+    color: #373737;
+}
+footer a:hover {
+    text-decoration: none;
+    color: #2e358d;
+}
+
+.auth__header {
+    padding: 13vh 1rem calc(11vh + 2.188rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+.auth__header:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.auth__logo {
+    position: relative;
+    z-index: 18;
+    background: #fff;
+    padding: 0.625rem;
+    border-radius: 50%;
+    box-shadow: 0 0.125rem 0.438rem rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+.auth__body {
+    padding-bottom: 2rem;
+    color: black;
+}
+.auth__form {
+    min-width: 17.5rem;
+    max-width: 36.25rem;
+    margin: auto;
+    margin-top: -2.5rem;
+    padding: 0 0.625rem;
+    position: relative;
+    z-index: 9;
+    color: black;
+}
+
+.auth__form a {
+    color: #373737;
+}
+
+.auth__form a:hover {
+    text-decoration: none;
+    color: #2e358d;
+}
+
+.btn-link-verification {
+    color: #c1272f !important;
+}
+
+.btn-link-verification:hover {
+    text-decoration: none !important;
+    color: #2e358d !important;
+}
+
+.auth__form__register{
+    min-width: 17.5rem;
+    max-width: 42.5rem;
+    margin: auto;
+    margin-top: -2.5rem;
+    padding: 0 0.625rem;
+    position: relative;
+    z-index: 9;
+    color: black;
+}
+.auth__form_body {
+    padding: 0.7rem 1.5rem 2.188rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    border: 0.063rem solid #eee;
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);
+}
+.auth__form_title {
+    font-size: 1.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    color: black;
+}
+.auth__form_actions {
+    text-align: center;
+    padding: 0 2rem;
+    margin-top: -1.563rem;
+}
+.auth__form_actions a {
+    text-decoration: none;
+    color: white;
+}
+.auth__form_actions a:hover {
+    text-decoration: none !important;
+    color: #c1272f;
+}
+
+.imgPerfil {
+    width: 3.125rem;
+}
+nav button:hover {
+    color: #c1272f !important;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: #1c191c !important;
+    color: white !important;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: white !important;
+    color: #1c191c !important;
+}
+
+/** CAROUSEL */
+.carousel .carousel-item {
+
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel .carousel-item:first-of-type {
+    background-image: url("../img/banner1.png");
+}
+
+.carousel .carousel-item:nth-of-type(2) {
+    background-image: url("../img/banner2.png");
+}
+
+.carousel .carousel-item:last-of-type {
+    background-image: url("../img/banner3.png");
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 3.125rem;
+    height: 3.125rem;
+}
+
+.link-container{
+    text-align: center;
+}
+
+.radio-horario {
+    display: none;
+
+}
+.bg-light {
+    color: black !important;
+}
+
+.page-link {
+    color: white !important;
+    background-color: #2e358d !important;
+    height: 100% !important;
+}
+.page-link:hover {
+    color: rgba(43, 41, 43, 0.88) !important;
+    background-color: #1d508a !important;
+}
+.disabled .page-link {
+    color: rgba(29, 29, 29, 0.33) !important;
+    background-color: rgba(0,0,0,0.21) !important;
+    height: 100% !important;
+}
+.active .page-link {
+    color: white !important;
+    background-color: #c1272f !important;
+    height: 100% !important;
+    border: none;
+    margin-top: 0.063rem !important;
+    padding-bottom: 0.063rem !important;
+}
+/*
+COOKIE ALERT
+ */
+.cookie-alert {
+    position: fixed;
+    bottom: 0rem;
+    z-index: 100;
+    width: 100%;
+    height: 1.875rem;
+    text-align: center;
+    line-height: 1.875rem;
+    background: -webkit-gradient(linear, left top, left bottom, from(#1c191c), to(#3d3d3d));
+    background: linear-gradient(#1c191c, #3d3d3d);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 100;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    -webkit-animation: slideIn 0.8s;
+    animation: slideIn 0.8s;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    display: none;
+}
+.cookie-alert .message {
+    white-space: nowrap;
+    text-shadow: 0 0.063rem 0 #2e358d;
+}
+@media (max-width: 47.938rem) {
+    .cookie-alert .message {
+        display: none;
+    }
+}
+.cookie-alert .mobile {
+    display: none;
+}
+@media (max-width: 47.938rem) {
+    .cookie-alert .mobile {
+        display: inline-block;
+    }
+}
+.close-cb {
+    border: none;
+    color: white;
+    background: #1c191c;
+    position: absolute;
+    display: inline-block;
+    right: 0.625rem;
+    top: 0;
+    cursor: pointer;
+    border-radius: 0.188rem;
+    border-radius: 0.188rem;
+    box-shadow: inset 0 0 0.188rem 0 rgba(0,0,0,0.2);
+    line-height: 1.875rem;
+    height: 1.875rem;
+    width: 1.875rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.close-cb:hover {
+    background: #c1272f;
+    color: white;
+}
+.cookie-alert.show {
+    display: block;
+    transform: translateY(0%);
+    transition-delay: 1000ms;
+}
+/*
+FIN DE COOKIE ALERT
+ */
+
+.a_redes{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.contenedor-redes-sociales {
+    margin: 1.25rem 0;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.contenedor-redes-sociales a {
+    position: relative;
+    display: inline-block;
+    height: 2.25rem;
+    width: 10rem;
+    line-height: 2.188rem;
+    padding: 0;
+    color: #fff;
+    border-radius: 3.125rem;
+    background: #fff;
+    margin: 0.313rem;
+    text-shadow: 0.125rem 0.125rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.12), 0 0.125rem 0.25rem rgba(0, 0, 0, 0.24);
+}
+
+.contenedor-redes-sociales a:hover span.circulo {
+    left: 100%;
+    margin-left: -2.188rem;
+    background: #fff;
+}
+
+.contenedor-redes-sociales a:hover span.titulo {
+    opacity: 0;
+}
+
+.contenedor-redes-sociales a:hover span.titulo-hover {
+    opacity: 1;
+    color: #fff;
+}
+
+.contenedor-redes-sociales a span.titulo-hover {
+    opacity: 0;
+}
+
+.contenedor-redes-sociales a span.circulo {
+    display: block;
+    color: #fff;
+    position: absolute;
+    float: left;
+    margin: 0.188rem;
+    line-height: 1.875rem;
+    height: 1.875rem;
+    width: 1.875rem;
+    top: 0;
+    left: 0;
+    transition: all 0.5s;
+    border-radius: 50%;
+}
+
+.contenedor-redes-sociales a span.circulo i {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.875rem;
+}
+
+.contenedor-redes-sociales a span.titulo, .contenedor-redes-sociales a span.titulo-hover {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: .5s;
+}
+
+.contenedor-redes-sociales a span.titulo {
+    right: 0.938rem
+}
+
+.contenedor-redes-sociales a span.titulo-hover {
+    left: 0.938rem
+}
+
+
+/*----------Colores de los botones----------*/
+
+.contenedor-redes-sociales .instagram {
+    border: 0.125rem solid #EE1D52;
+}
+
+.contenedor-redes-sociales .instagram:hover, .contenedor-redes-sociales .instagram span.circulo {
+    background: #EE1D52;
+}
+
+.contenedor-redes-sociales .instagram:hover span.circulo, .contenedor-redes-sociales .instagram span.titulo {
+    color: #EE1D52;
+}
+
+.contenedor-redes-sociales .tiktok {
+    border: 0.125rem solid #010101;
+}
+
+.contenedor-redes-sociales .tiktok:hover, .contenedor-redes-sociales .tiktok span.circulo {
+    background:  #010101;
+}
+
+.contenedor-redes-sociales .tiktok:hover span.circulo, .contenedor-redes-sociales .tiktok span.titulo {
+    color:  #010101;
+}
+
+.iconoTiktok{
+    width: 1.25rem;
+    height: 1.125rem;
+}
+
+/*--------------Tarjeta Vip JoseaBarber--------------*/
+
+.vip_card {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+  }
+  
+  .vip_card__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    /*color: white;*/
+  }
+  
+  .vip_card__face--front {
+    /*background-color: yellow;*/
+  }
+  
+  .vip_card__face--back {
+    /*background-color: yellow;*/
+    transform: rotateY(180deg);
+    perspective: 1000px;
+  }
+  
+  .vip_card.is-flipped {
+    transform: rotateY(180deg);
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+
+/*--------------Mediaqueries--------------*/
+
+@media screen and (max-width: 30rem) {
+    .contenedor-redes-sociales a {
+        width: 100%;
+        margin: 0;
+        margin-bottom: 0.625rem;
+    }
+
+    .p-1 {
+        width: 50%;
+    }
+}
+
+/*--------------Modal Cita Calendar--------------*/
+
+#addToCalendarModal .modal-body {
+    text-align: center; /* Centrar el texto */
+}
+
+#addToCalendarModal .modal-header {
+    display: flex;
+    align-items: center; /* Alinear verticalmente el icono y el texto */
+}
+
+#addToCalendarModal .modal-footer {
+    display: flex;
+    justify-content: space-between; /* Espaciado entre botones */
+}
+
+#addToCalendarModal .btn {
+    border-radius: 50px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de texto */
+    transition: transform 0.2s, background-color 0.3s; /* Transiciones suaves */
+}
+
+#addToCalendarModal .btn-success {
+    background-color: #28a745; /* Verde vibrante */
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+}
+
+#addToCalendarModal .btn-danger {
+    background-color: #dc3545; /* Rojo apagado */
+    color: white;
+    opacity: 0.6; /* Opacidad para parecer apagado */
+    cursor: not-allowed; /* Cambiar el cursor para indicar que está deshabilitado */
+}
+
+#addToCalendarModal .btn-danger:hover {
+    opacity: 0.6; /* Mantener la opacidad al pasar el mouse */
+}
+
+#addToCalendarModal .btn-success:hover {
+    transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+}
