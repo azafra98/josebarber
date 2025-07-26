@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Banner;
-use App\Corte;
-use App\DiasNoDisponibles;
-use App\Horario;
+use App\Models\Banner;
+use App\Models\Corte;
+use App\Models\DiasNoDisponibles;
+use App\Models\Horario;
 use App\Mail\MensajeConfirmacion;
-use App\Reserva;
-use App\User;
+use App\Models\Reserva;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

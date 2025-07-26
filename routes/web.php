@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;  // ← IMPORTA tu controlador
+use App\Http\Controllers\AdminController;  // ← IMPORTA tu controlador
+use Illuminate\Support\Facades\Auth;
+//use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,69 +17,79 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('/localizanos', 'HomeController@getMapa');
-Route::get('/redes', 'HomeController@getRedesSociales');
-Route::get('/biografia','HomeController@getBiografia');
-Route::get('/ayuda','HomeController@getAyuda');
-Route::get('/novedades','HomeController@getNovedades');
-Route::get('politica-de-cookies', 'HomeController@politicas');
-Route::get('politica-de-privacidad', 'HomeController@politicas');
+// RUTAS PÚBLICAS
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/localizanos', [HomeController::class, 'getMapa']);
+Route::get('/redes', [HomeController::class, 'getRedesSociales']);
+Route::get('/biografia', [HomeController::class, 'getBiografia']);
+Route::get('/ayuda', [HomeController::class, 'getAyuda']);
+Route::get('/novedades', [HomeController::class, 'getNovedades']);
+Route::get('/politica-de-cookies', [HomeController::class, 'politicas']);
+Route::get('/politica-de-privacidad', [HomeController::class, 'politicas']);
 
-//Obligatorio estar logueado y verificado
-Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
-    Route::get('/citas', 'HomeController@citas');
-    Route::get('/entradas','HomeController@getEntradas');
-    Route::get('/vip', 'HomeController@getVip');
-    Route::get('/miPerfil','HomeController@getPerfil');
-    Route::get('/editarPerfil', 'HomeController@editarPerfil');
-    Route::post('/editarPerfil/{id}', 'HomeController@postEditarPerfil');
-    Route::get('/calendario/action', 'HomeController@action')->name("calendario.action");
-    Route::post('/pedirCita', 'HomeController@addReserva');
-    Route::post('/anular-reserva', 'HomeController@cancelarReserva');
-});
-
-//CONTROL
-Route::group(['middleware' => 'admin'], function() {
-    Route::get('/control/usuarios', 'AdminController@users');
-    Route::get('/control/usuarios/anadir', 'AdminController@addUser');
-    Route::get('/control/usuarios/modificar/{id}', 'AdminController@updateUser');
-    Route::post('/control/usuarios/modificar/{id}', 'AdminController@postUpdateUser');
-    Route::post('/control/usuarios/anadir', 'AdminController@postAddUser');
-    Route::post('/control/usuarios/eliminar', 'AdminController@deleteUser');
-
-    Route::get('/control/dias-no-disponibles', 'AdminController@diasNoDisponibles');
-    Route::get('/control/dias-no-disponibles/anadir', 'AdminController@addDiaNoDisponible');
-    Route::post('/control/dias-no-disponibles/anadir', 'AdminController@postAddDiaNoDisponible');
-    Route::post('/control/dias-no-disponibles/eliminar', 'AdminController@deleteDia');
-
-    Route::get('/control/horarios', 'AdminController@horarios');
-    Route::get('/control/horarios/anadir', 'AdminController@addHorario');
-    Route::post('/control/horarios/anadir', 'AdminController@postAddHorario');
-    Route::post('/control/horarios/eliminar', 'AdminController@deleteHorario');
-
-    Route::get('/control/reservas', 'AdminController@reservas');
-    Route::get('/control/reservas/anadir', 'AdminController@addReserva');
-    Route::get('/control/reservas/calendarioNuevo/actionNuevo', 'AdminController@actionNuevo')->name("calendarioNuevo.actionNuevo");
-    Route::post('/control/reservas/anadir', 'AdminController@postAddReserva');
-    Route::get('/control/reservas/modificar/prueba/calendario','AdminController@actionUpdate')->name("prueba.calendario");
-    Route::get('/control/reservas/modificar/{id}', 'AdminController@updateReserva');
-    Route::post('/control/reservas/modificar/{id}', 'AdminController@postUpdateReserva');
-    Route::post('/control/reservas/eliminar', 'AdminController@deleteReserva');
-
-    Route::get('/control/banner', 'AdminController@banner');
-    Route::post('/control/banner/modificar', 'AdminController@updateBanner');
-
-    Route::get('/control/cortes', 'AdminController@cortes');
-    Route::get('/control/cortes/anadir', 'AdminController@addCorte');
-    Route::get('/control/cortes/modificar/{id}', 'AdminController@updateCorte');
-    Route::post('/control/cortes/modificar/{id}', 'AdminController@postUpdateCorte');
-    Route::post('/control/cortes/anadir', 'AdminController@postAddCorte');
-    Route::post('/control/cortes/eliminar', 'AdminController@deleteCorte');
-});
-
+// AUTH: login, registro, verificación de email, reset de password...
 Auth::routes(['verify'=>true]);
+
+// RUTA HOME DESPUÉS DE LOGIN
 Route::get('/home', 'HomeController@index')->name('home');
+
+// RUTAS PROTEGIDAS (usuario autenticado y verificado)
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/citas', [HomeController::class, 'citas']);
+    Route::get('/entradas', [HomeController::class, 'getEntradas']);
+    Route::get('/vip', [HomeController::class, 'getVip']);
+    Route::get('/miPerfil', [HomeController::class, 'getPerfil']);
+    Route::get('/editarPerfil', [HomeController::class, 'editarPerfil']);
+    Route::post('/editarPerfil/{id}', [HomeController::class, 'postEditarPerfil']);
+    Route::get('/calendario/action', [HomeController::class, 'action'])->name('calendario.action');
+    Route::post('/pedirCita', [HomeController::class, 'addReserva']);
+    Route::post('/anular-reserva', [HomeController::class, 'cancelarReserva']);
+});
+
+// RUTAS DE ADMIN CONTROL (middleware personalizado “admin”)
+Route::middleware('admin')->prefix('control')->group(function () {
+    // Usuarios
+    Route::get('/usuarios', [AdminController::class, 'users']);
+    Route::get('/usuarios/anadir', [AdminController::class, 'addUser']);
+    Route::post('/usuarios/anadir', [AdminController::class, 'postAddUser']);
+    Route::get('/usuarios/modificar/{id}', [AdminController::class, 'updateUser']);
+    Route::post('/usuarios/modificar/{id}', [AdminController::class, 'postUpdateUser']);
+    Route::post('/usuarios/eliminar', [AdminController::class, 'deleteUser']);
+
+    // Días no disponibles
+    Route::get('/dias-no-disponibles', [AdminController::class, 'diasNoDisponibles']);
+    Route::get('/dias-no-disponibles/anadir', [AdminController::class, 'addDiaNoDisponible']);
+    Route::post('/dias-no-disponibles/anadir', [AdminController::class, 'postAddDiaNoDisponible']);
+    Route::post('/dias-no-disponibles/eliminar', [AdminController::class, 'deleteDia']);
+
+    // Horarios
+    Route::get('/horarios', [AdminController::class, 'horarios']);
+    Route::get('/horarios/anadir', [AdminController::class, 'addHorario']);
+    Route::post('/horarios/anadir', [AdminController::class, 'postAddHorario']);
+    Route::post('/horarios/eliminar', [AdminController::class, 'deleteHorario']);
+
+    // Reservas
+    Route::get('/reservas', [AdminController::class, 'reservas']);
+    Route::get('/reservas/anadir', [AdminController::class, 'addReserva']);
+    Route::post('/reservas/anadir', [AdminController::class, 'postAddReserva']);
+    Route::get('/reservas/calendarioNuevo/actionNuevo', [AdminController::class, 'actionNuevo'])
+         ->name('calendarioNuevo.actionNuevo');
+    Route::get('/reservas/modificar/{id}', [AdminController::class, 'updateReserva']);
+    Route::post('/reservas/modificar/{id}', [AdminController::class, 'postUpdateReserva']);
+    Route::post('/reservas/eliminar', [AdminController::class, 'deleteReserva']);
+
+    // Banner
+    Route::get('/banner', [AdminController::class, 'banner']);
+    Route::post('/banner/modificar', [AdminController::class, 'updateBanner']);
+
+    // Cortes
+    Route::get('/cortes', [AdminController::class, 'cortes']);
+    Route::get('/cortes/anadir', [AdminController::class, 'addCorte']);
+    Route::post('/cortes/anadir', [AdminController::class, 'postAddCorte']);
+    Route::get('/cortes/modificar/{id}', [AdminController::class, 'updateCorte']);
+    Route::post('/cortes/modificar/{id}', [AdminController::class, 'postUpdateCorte']);
+    Route::post('/cortes/eliminar', [AdminController::class, 'deleteCorte']);
+});
 
 
 /*
@@ -84,6 +98,9 @@ Route::get('/', function () {
 });
 */
 
+// Deshuso
+/*
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+*/
