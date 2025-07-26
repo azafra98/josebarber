@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -50,12 +49,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nombre' => ['required', 'string', 'max:255'],
-            'apellidos' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telefono' => ['required', 'digits:9'],
-            'imagenusuario'=> ['nullable', 'image', 'max:512'],
         ]);
     }
 
@@ -63,31 +59,14 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        $imagenusuario = 'img/defecto.png';
-        $user =  User::create([
-            'nombre' => $data['nombre'],
-            'apellidos' => $data['apellidos'],
+        return User::create([
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'telefono' => $data['telefono'],
-            'imagenusuario' => $imagenusuario,
-            'rol' => 'basico',
-            'insta_user' => $data['insta_user'],
         ]);
-
-        if (request()->hasFile('imagenusuario')) {
-            // Ejecutamos el código: movemos el archivo a la carpeta "img" con un nombre único
-            $file = request()->file('imagenusuario');
-            $fich_unic = time() . "-" . $file->getClientOriginalName();
-            $imagenusuario = 'img/' . $fich_unic;
-            $file->move('img', $fich_unic);
-            $user->update(['imagenusuario' => $imagenusuario]);
-        }
-
-        return $user;
     }
 }

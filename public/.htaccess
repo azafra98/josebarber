@@ -5,10 +5,10 @@
 
     RewriteEngine On
 
-    # Forzar HTTPS + WWW (antes que nada)
-    RewriteCond %{HTTPS} off [OR]
-    RewriteCond %{HTTP_HOST} !^www\.joseabarber\.es$ [NC]
-    RewriteRule ^ https://www.joseabarber.es%{REQUEST_URI} [L,R=301]
+    # Forzar HTTPS + WWW (antes que nada) (en producción se descomenta)
+    # RewriteCond %{HTTPS} off [OR]
+    # RewriteCond %{HTTP_HOST} !^www\.joseabarber\.es$ [NC]
+    # RewriteRule ^ https://www.joseabarber.es%{REQUEST_URI} [L,R=301]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
